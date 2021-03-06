@@ -83,6 +83,12 @@ class TableViewController: UITableViewController {
             detailTableViewController.addMode = false
             }
         }
+        if segue.identifier == "addUser" {
+            if let selectedRow = tableView.indexPathsForSelectedRows {
+                tableView.deselectRow(at: selectedRow[0], animated: false)
+                navigationItem.leftBarButtonItem?.isEnabled = false
+            }
+        }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationItem.leftBarButtonItem?.isEnabled = true

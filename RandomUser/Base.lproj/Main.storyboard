@@ -63,7 +63,7 @@
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="New" id="W5k-de-9qh">
                             <connections>
-                                <segue destination="nE4-AI-ZUQ" kind="presentation" id="4Tq-Fx-Mbu"/>
+                                <segue destination="nE4-AI-ZUQ" kind="presentation" identifier="addUser" id="4Tq-Fx-Mbu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -186,8 +186,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageCell" destination="Nti-tc-sbH" id="16R-FS-8T8"/>
                         <outlet property="ageTextField" destination="xdC-z2-p9p" id="bRU-br-pR9"/>
                         <outlet property="ageTextInput" destination="TuX-Ez-c2u" id="aSt-7X-3XN"/>
+                        <outlet property="nameCell" destination="4eg-U8-bXQ" id="FVM-8b-OKv"/>
                         <outlet property="nameTextField" destination="S11-vr-yQ8" id="YqE-mt-aUC"/>
                         <outlet property="nameTextInput" destination="OmR-5S-1Yk" id="K4h-bh-3V8"/>
                     </connections>
@@ -235,7 +237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uAt-7h-NEe"/>
+        <segue reference="4Tq-Fx-Mbu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

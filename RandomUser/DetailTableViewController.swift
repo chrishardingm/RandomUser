@@ -19,6 +19,9 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var nameTextInput: UITextField!
     @IBOutlet weak var ageTextInput: UITextField!
     
+    @IBOutlet weak var nameCell: UITableViewCell!
+    @IBOutlet weak var ageCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsSelection = false
@@ -28,6 +31,7 @@ class DetailTableViewController: UITableViewController {
             ageTextField.text = String(user.age)
             print("userfound")
             if addMode == false {
+                
                 self.title = "\(user.name), \(user.age)"
                 nameTextField.text = "Enter new name"
                 ageTextField.text = "Enter new age"
