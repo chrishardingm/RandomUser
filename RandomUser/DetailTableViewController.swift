@@ -10,22 +10,51 @@ import UIKit
 class DetailTableViewController: UITableViewController {
     
     var user: Users?
+    var editMode: Bool = true
+    var addMode: Bool = true
     
     @IBOutlet weak var nameTextField: UILabel!
     @IBOutlet weak var ageTextField: UILabel!
     
+    @IBOutlet weak var nameTextInput: UITextField!
+    @IBOutlet weak var ageTextInput: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.allowsSelection = false
+        
         if let user = user {
             nameTextField.text = user.name
             ageTextField.text = String(user.age)
             print("userfound")
+            if addMode == false {
+                self.title = "\(user.name), \(user.age)"
+                nameTextField.text = "Enter new name"
+                ageTextField.text = "Enter new age"
+            }
         }
+        if editMode == false {
+            nameTextInput.isHidden = true
+            ageTextInput.isHidden = true
+        } else {
+            nameTextInput.isHidden = false
+            ageTextInput.isHidden = false
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "saveUnwind" else {return}
+        
+        let name = nameTextInput.text ?? ""
+        let age = ageTextInput.text ?? ""
+        user = Users(name: name, age: Int(age) ?? 0)
     }
 
     // MARK: - Table view data source

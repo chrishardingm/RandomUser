@@ -53,7 +53,7 @@
                                 <segue destination="nE4-AI-ZUQ" kind="presentation" identifier="EditUser" id="uAt-7h-NEe"/>
                             </connections>
                         </barButtonItem>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="fbK-mH-pg5">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="fbK-mH-pg5">
                             <rect key="frame" x="160.5" y="7" width="93" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Random User"/>
@@ -61,7 +61,7 @@
                                 <segue destination="nE4-AI-ZUQ" kind="presentation" identifier="RandomUser" id="Jo2-F7-IUM"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" title="+" id="W5k-de-9qh">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="W5k-de-9qh">
                             <connections>
                                 <segue destination="nE4-AI-ZUQ" kind="presentation" id="4Tq-Fx-Mbu"/>
                             </connections>
@@ -72,7 +72,7 @@
             </objects>
             <point key="canvasLocation" x="911.59420289855075" y="111.83035714285714"/>
         </scene>
-        <!--Detail Table View Controller-->
+        <!--New User-->
         <scene sceneID="MbG-id-oMR">
             <objects>
                 <tableViewController id="OdT-JM-CBh" customClass="DetailTableViewController" customModule="RandomUser" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,13 +80,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="systemBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemGray2Color"/>
                         <sections>
                             <tableViewSection headerTitle="Name" id="iQl-dg-YFa">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="S11-vr-yQ8" style="IBUITableViewCellStyleDefault" id="IfF-PA-EVb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" textLabel="S11-vr-yQ8" style="IBUITableViewCellStyleDefault" id="IfF-PA-EVb">
                                         <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IfF-PA-EVb" id="u3T-U2-DvU">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IfF-PA-EVb" id="u3T-U2-DvU">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -108,7 +110,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OmR-5S-1Yk">
-                                                    <rect key="frame" x="20" y="-2" width="374" height="34.5"/>
+                                                    <rect key="frame" x="20" y="-2" width="334" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -150,7 +152,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TuX-Ez-c2u">
-                                                    <rect key="frame" x="20" y="5" width="374" height="34.5"/>
+                                                    <rect key="frame" x="20" y="5" width="334" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -171,15 +173,27 @@
                             <outlet property="delegate" destination="OdT-JM-CBh" id="4cx-bN-AHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mc1-9K-Zjf">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="jgZ-jf-uKM"/>
+                    <navigationItem key="navigationItem" title="New User" id="mc1-9K-Zjf">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="HWW-Kx-Lbb">
+                            <connections>
+                                <segue destination="eTA-Sa-eBr" kind="unwind" unwindAction="unwindSegueWithSegue:" id="Qwl-lg-fOe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="jgZ-jf-uKM">
+                            <connections>
+                                <segue destination="eTA-Sa-eBr" kind="unwind" identifier="saveUnwind" unwindAction="unwindSegueWithSegue:" id="mDV-WM-MSj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="ageTextField" destination="xdC-z2-p9p" id="bRU-br-pR9"/>
+                        <outlet property="ageTextInput" destination="TuX-Ez-c2u" id="aSt-7X-3XN"/>
                         <outlet property="nameTextField" destination="S11-vr-yQ8" id="YqE-mt-aUC"/>
+                        <outlet property="nameTextInput" destination="OmR-5S-1Yk" id="K4h-bh-3V8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwJ-1b-tNE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="eTA-Sa-eBr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2921.739130434783" y="111.83035714285714"/>
         </scene>
@@ -226,6 +240,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

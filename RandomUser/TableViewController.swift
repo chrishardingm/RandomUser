@@ -10,10 +10,11 @@ import UIKit
 class TableViewController: UITableViewController {
     
     var users = [Users]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.leftBarButtonItem?.isEnabled = false
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,7 +26,8 @@ class TableViewController: UITableViewController {
         let newUser1 = Users(name: "Sally", age: 21)
         let newUser2 = Users(name: "John", age: 21)
         let newUser3 = Users(name: "Sam", age: 31)
-        users += [newUser1,newUser2,newUser3]
+        let newUser4 = Users(name: "Amanda", age: 34)
+        users += [newUser1,newUser2,newUser3,newUser4]
     }
 
     // MARK: - Table view data source
@@ -66,6 +68,9 @@ class TableViewController: UITableViewController {
             let detailTableViewController = navController.topViewController as! DetailTableViewController
             
             detailTableViewController.user = user[0]
+            detailTableViewController.editMode = false
+            detailTableViewController.self.title = "Random User"
+            detailTableViewController.navigationItem.rightBarButtonItem?.isEnabled = false
         }
         if segue.identifier == "EditUser" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -74,7 +79,33 @@ class TableViewController: UITableViewController {
             let detailTableViewController = navController.topViewController as! DetailTableViewController
             
             detailTableViewController.user = user
+            detailTableViewController.self.title = "\(user.name), \(user.age)"
+            detailTableViewController.addMode = false
             }
+        }
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationItem.leftBarButtonItem?.isEnabled = true
+    }
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        navigationItem.leftBarButtonItem?.isEnabled = false
+    }
+    @IBAction func unwindSegue(segue: UIStoryboardSegue){
+        guard segue.identifier == "saveUnwind",
+        let sourceViewController = segue.source as?
+        DetailTableViewController,
+            let user = sourceViewController.user else {return}
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow
+        {
+            users[selectedIndexPath.row] = user
+            tableView.reloadRows(at: [selectedIndexPath]
+                                 , with: .none)
+        } else {
+            let newIndexPath = IndexPath(row: users.count, section: 0)
+            users.append(user)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            
         }
     }
     /*
