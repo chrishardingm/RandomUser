@@ -10,17 +10,22 @@ import UIKit
 class TableViewController: UITableViewController {
     
     var users = [Users]()
-
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem?.isEnabled = false
+        users = Users.loadFromFile()
+        print(users)
+        if users.isEmpty {
+            loadExampleUsers()
+            Users.savetoFile(users: users)
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        loadExampleUsers()
     }
     func loadExampleUsers() {
         let newUser1 = Users(name: "Sally", age: 21)
@@ -54,11 +59,12 @@ class TableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            
             users.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            Users.savetoFile(users: users)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,6 +119,7 @@ class TableViewController: UITableViewController {
             tableView.insertRows(at: [newIndexPath], with: .automatic)
             
         }
+        Users.savetoFile(users: users)
     }
     /*
     // Override to support conditional editing of the table view.
